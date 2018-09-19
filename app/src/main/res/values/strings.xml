@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">contacts-mvvm</string>
+    <string name="space">\u0020</string>
+    <string name="message_no_phone">no phone</string>
+    <string name="message_no_address">no address</string>
+    <string name="title_contacts">Contacts</string>
+    <string name="home_type">Home</string>
+    <string name="cellphone_type">Cellphone</string>
+    <string name="office_type">Office</string>
+    <string name="message_no_connection">There has been a problem\nwith the connection.</string>
+    <string name="message_retry">Retry</string>
+    <string name="title_contact_detail">Contact Detail</string>
+</resources>

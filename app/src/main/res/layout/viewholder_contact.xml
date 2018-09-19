@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.util.List" />
+        <variable
+            name="data"
+            type="com.gabcode.contacts_mvvm.data.model.Contact"/>
+        <variable
+            name="listener"
+            type="com.gabcode.contacts_mvvm.contact.ContactItemListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_horizontal_medium"
+        android:paddingTop="@dimen/padding_horizontal_default"
+        android:paddingEnd="@dimen/padding_horizontal_medium"
+        android:paddingBottom="@dimen/padding_horizontal_default"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/box_shape"
+        android:foreground="@drawable/ripple_effect"
+        android:clickable="true"
+        android:onClick="@{() -> listener.onItemClick(data.id)}">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_photo_profile"
+                android:layout_width="@dimen/photo_profile_size"
+                android:layout_height="@dimen/photo_profile_size"
+                android:transitionName="transitionImage"
+                app:civ_border_color="@android:color/darker_gray"
+                app:civ_border_width="2dp"
+                app:thumb="@{data.thumb}"
+                tools:src="@drawable/photo_profile" />
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="@dimen/space_between_elements"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img_photo_profile"
+                android:layout_alignTop="@+id/img_photo_profile"
+                android:layout_alignBottom="@+id/img_photo_profile"/>
+
+            <TextView
+                android:id="@+id/tx_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_vertical_small"
+                android:textSize="@dimen/textSize_medium"
+                android:text="@{data.firstName.concat(@string/space).concat(data.lastName)}"
+                android:transitionName="transitionName"
+                android:layout_toEndOf="@+id/space"
+                tools:text="Abraham Lincon" />
+
+            <TextView
+                android:id="@+id/tx_main_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:phoneAvailable="@{data.phones}"
+                tools:text="5412545-858"
+                android:layout_toEndOf="@+id/space"
+                android:layout_below="@+id/tx_full_name"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</layout>

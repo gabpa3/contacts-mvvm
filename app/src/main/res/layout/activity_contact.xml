@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.gabcode.contacts_mvvm.contact.ContactViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".contact.ContactActivity">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/search_container"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorPrimary">
+
+            <android.support.constraint.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_top"
+                app:layout_constraintGuide_percent=".2"
+                android:orientation="horizontal"/>
+
+            <android.support.constraint.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_left"
+                app:layout_constraintGuide_percent=".15"
+                android:orientation="vertical"/>
+
+            <android.support.constraint.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_right"
+                app:layout_constraintGuide_percent=".85"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/tx_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_contacts"
+                android:textSize="@dimen/textSize_hyper_large"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_top"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:iconifiedByDefault="true"
+                android:background="@drawable/box_shape"
+                app:layout_constraintTop_toBottomOf="@+id/tx_title"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-35dp"
+            android:layout_marginStart="@dimen/margin_horizontal_default"
+            android:layout_marginEnd="@dimen/margin_horizontal_default"
+            android:layout_below="@+id/search_container"/>
+
+        <include
+            layout="@layout/progressbar"
+            app:isLoading="@{viewModel.loading}" />
+
+        <include
+            android:id="@+id/layout_no_connection"
+            layout="@layout/view_no_network"
+            app:visibility="@{viewModel.noConnection}" />
+
+    </RelativeLayout>
+
+</layout>

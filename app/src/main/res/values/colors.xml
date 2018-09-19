@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/blueGray_500</color>
+    <color name="colorPrimaryDark">@color/blueGray_700</color>
+    <color name="colorPrimaryLight">@color/blueGray_300</color>
+    <color name="colorAccent">@color/lightGreen_500</color>
+    <color name="colorHighlight">@color/lightGreen_a200</color>
+    <color name="colorHighlight_dark">@color/lightGreen_a700</color>
+    <color name="colorBackground">@color/blue_50</color>
+    <color name="colorBackground_dark">@color/blueGray_200</color>
+    <color name="colorBackground_image">#C3CCDF</color>
+
+    <color name="blueGray_200">#B0BEC5</color>
+    <color name="blueGray_300">#90A4AE</color>
+    <color name="blueGray_500">#607D8B</color>
+    <color name="blueGray_700">#455A64</color>
+    <color name="lightGreen_500">#8BC34A</color>
+    <color name="lightGreen_a200">#B2FF59</color>
+    <color name="lightGreen_a700">#64DD17</color>
+    <color name="blue_50">#E3F2FD</color>
+
+</resources>

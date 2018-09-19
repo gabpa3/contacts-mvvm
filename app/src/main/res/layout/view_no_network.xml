@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="visibility"
+            type="boolean" />
+        <variable
+            name="listener"
+            type="com.gabcode.contacts_mvvm.data.source.RetryListener" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        android:visibility="@{visibility ? View.VISIBLE : View.GONE}">
+
+        <ImageView
+            android:id="@+id/ic_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_error"
+            android:gravity="center"
+            android:layout_alignStart="@+id/tx_no_connection_message"
+            android:layout_alignEnd="@+id/tx_no_connection_message"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/tx_no_connection_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_no_connection"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/ic_error"/>
+
+        <TextView
+            android:id="@+id/tx_retry_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_retry"
+            android:textAllCaps="true"
+            android:textColor="@color/colorHighlight_dark"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onRetryClick()}"
+            android:layout_alignStart="@+id/tx_no_connection_message"
+            android:layout_alignEnd="@+id/tx_no_connection_message"
+            android:layout_below="@+id/tx_no_connection_message"/>
+
+    </RelativeLayout>
+</layout>

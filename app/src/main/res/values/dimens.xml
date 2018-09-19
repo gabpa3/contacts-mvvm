@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_horizontal_small">8dp</dimen>
+    <dimen name="padding_horizontal_default">16dp</dimen>
+    <dimen name="padding_horizontal_medium">24dp</dimen>
+    <dimen name="padding_horizontal_large">32dp</dimen>
+
+    <dimen name="padding_vertical_small">8dp</dimen>
+    <dimen name="padding_vertical_default">16dp</dimen>
+    <dimen name="padding_vertical_medium">24dp</dimen>
+    <dimen name="padding_vertical_large">32dp</dimen>
+
+    <dimen name="margin_horizontal_small">8dp</dimen>
+    <dimen name="margin_horizontal_default">16dp</dimen>
+    <dimen name="margin_horizontal_medium">24dp</dimen>
+    <dimen name="margin_horizontal_large">32dp</dimen>
+
+    <dimen name="margin_vertical_small">8dp</dimen>
+    <dimen name="margin_vertical_default">16dp</dimen>
+    <dimen name="margin_vertical_medium">24dp</dimen>
+    <dimen name="margin_vertical_large">32dp</dimen>
+
+    <dimen name="textSize_micro">10sp</dimen>
+    <dimen name="textSize_small">12sp</dimen>
+    <dimen name="textSize_normal">14sp</dimen>
+    <dimen name="textSize_medium">18sp</dimen>
+    <dimen name="textSize_large">22sp</dimen>
+    <dimen name="textSize_hyper_large">36sp</dimen>
+
+    <dimen name="radius_size">4dp</dimen>
+    <dimen name="radius_large_size">10dp</dimen>
+    <dimen name="space_between_elements">25dp</dimen>
+    <dimen name="photo_profile_size">64dp</dimen>
+
+</resources>

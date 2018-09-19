@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="java.util.List" />
+        <variable
+            name="viewModel"
+            type="com.gabcode.contacts_mvvm.contactDetail.ContactDetailViewModel"/>
+        <variable
+            name="data"
+            type="com.gabcode.contacts_mvvm.data.model.Contact" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".contactDetail.ContactDetailActivity">
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_percent=".6"
+            android:orientation="horizontal"/>
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline2"
+            app:layout_constraintGuide_percent=".55"
+            android:orientation="horizontal"/>
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline_begin"
+            app:layout_constraintGuide_begin="@dimen/margin_horizontal_default"
+            android:orientation="vertical"/>
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline_end"
+            app:layout_constraintGuide_end="@dimen/margin_horizontal_default"
+            android:orientation="vertical"/>
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/toolbar" />
+
+        <ImageView
+            android:id="@+id/img_photo_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@null"
+            android:transitionName="transitionImage"
+            android:background="@color/colorBackground_image"
+            android:visibility="@{viewModel.noConnection ? View.GONE : View.VISIBLE}"
+            app:image="@{data.photo}"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <RelativeLayout
+            android:id="@+id/content_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_semi_rounded_top_shape"
+            android:padding="@dimen/padding_vertical_default"
+            android:visibility="@{viewModel.noConnection ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_begin">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_medium"
+                android:maxLines="2"
+                android:text="@{data.firstName.concat(@string/space).concat(data.lastName)}"
+                android:transitionName="transitionName"
+                tools:text="Arnold Schwarzenegger"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/divider_horizontal"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/margin_horizontal_default"
+                android:layout_marginEnd="@dimen/margin_horizontal_default"
+                android:paddingBottom="@dimen/padding_horizontal_small"
+                android:paddingEnd="@dimen/padding_horizontal_default"
+                android:paddingStart="@dimen/padding_horizontal_default"
+                android:paddingTop="@dimen/padding_horizontal_small"
+                android:visibility="@{viewModel.noConnection ? View.GONE : View.VISIBLE}"
+                android:showDividers="middle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_vertical_small">
+
+                    <ImageView
+                        android:id="@+id/ic_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="@dimen/margin_vertical_small"
+                        android:layout_marginEnd="@dimen/margin_horizontal_default"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:id="@+id/tx_birth_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/ic_calendar"
+                        android:layout_centerVertical="true"
+                        android:text="@{data.birthDate}"
+                        tools:text="1980-03-31" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding_vertical_small"
+                    android:paddingBottom="@dimen/padding_vertical_small">
+
+                    <ImageView
+                        android:id="@+id/ic_home_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_horizontal_default"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        android:id="@+id/tx_home_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/ic_home_phone"
+                        android:text="@{data.phones.get(0).number ?? @string/message_no_phone}"
+                        tools:text="610-752-6648" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/tx_home_phone"
+                        android:layout_below="@id/tx_home_phone"
+                        android:text="@string/home_type"
+                        android:textSize="@dimen/textSize_micro" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_vertical_small"
+                    android:paddingTop="@dimen/padding_vertical_small">
+
+                    <ImageView
+                        android:id="@+id/ic_cell_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_horizontal_default"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        android:id="@+id/tx_cell_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/ic_cell_phone"
+                        android:text="@{data.phones.get(1).number ?? @string/message_no_phone}"
+                        tools:text="610-752-6648" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/tx_cell_phone"
+                        android:layout_below="@id/tx_cell_phone"
+                        android:text="@string/cellphone_type"
+                        android:textSize="@dimen/textSize_micro" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_vertical_small"
+                    android:paddingTop="@dimen/padding_vertical_small">
+
+                    <ImageView
+                        android:id="@+id/ic_office_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_horizontal_default"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        android:id="@+id/tx_office_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/ic_office_phone"
+                        android:text="@{data.phones.get(2).number ?? @string/message_no_phone}"
+                        tools:text="610-752-6648" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/tx_office_phone"
+                        android:layout_below="@id/tx_office_phone"
+                        android:text="@string/office_type"
+                        android:textSize="@dimen/textSize_micro" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_vertical_small"
+                    android:paddingTop="@dimen/padding_vertical_small">
+
+                    <ImageView
+                        android:id="@+id/ic_home_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_horizontal_default"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/tx_home_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/ic_home_location"
+                        android:text="@{data.addresses.get(0).home ?? @string/message_no_address}"
+                        tools:text="Av. luis roche" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/tx_home_location"
+                        android:layout_below="@id/tx_home_location"
+                        android:text="@string/home_type"
+                        android:textSize="@dimen/textSize_micro" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding_vertical_small">
+
+                    <ImageView
+                        android:id="@+id/ic_office_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_horizontal_default"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/tx_office_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/ic_office_location"
+                        android:text="@{data.addresses.get(0).work ?? @string/message_no_address}"
+                        tools:text="Av. luis roche" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/tx_office_location"
+                        android:layout_below="@id/tx_office_location"
+                        android:text="@string/office_type"
+                        android:textSize="@dimen/textSize_micro" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                layout="@layout/progressbar"
+                app:isLoading="@{viewModel.loading}" />
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/layout_no_connection"
+            layout="@layout/view_no_network"
+            app:visibility="@{viewModel.noConnection}"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
