@@ -8,19 +8,6 @@ import javax.net.ssl.HttpsURLConnection
 
 class ContactRepository : ContactDataSource {
 
-//    override fun getContacts(callback: ContactDataSource.LoadDataCallback<List<Contact>>) {
-//        val call: Call<List<Contact>> = RestClient.getInstance()?.getApiService()!!.getContacts()
-//        call.enqueue(object : Callback<List<Contact>> {
-//            override fun onFailure(call: Call<List<Contact>>, t: Throwable) {
-//                callback.onDataNotAvailable(t.message)
-//            }
-//
-//            override fun onResponse(call: Call<List<Contact>>, response: Response<List<Contact>>) {
-//                callback.onDataLoaded(response?.body()!!)
-//            }
-//        })
-//    }
-
     override fun getContacts(callback: ContactDataSource.LoadDataCallback<List<Contact>>) {
         val call: Call<List<Contact>> = RestClient.getInstance()?.getApiService()!!.getContacts()
         call.enqueue(genericCallback(

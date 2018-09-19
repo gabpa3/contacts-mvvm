@@ -26,10 +26,10 @@ class RestClient {
         val client: OkHttpClient =
                 OkHttpClient().newBuilder()
                     .addInterceptor(NetworkInterceptor())
-//                    .addInterceptor(HttpLoggingInterceptor().apply {
-//                        level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC
-//                        else HttpLoggingInterceptor.Level.NONE
-//                    })
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC
+                        else HttpLoggingInterceptor.Level.NONE
+                    })
                     .build()
 
         val gson = GsonBuilder().create()
